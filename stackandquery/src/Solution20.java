@@ -27,8 +27,7 @@ public class Solution20 {
                 }else return false;
             }
         }
-        if(top==0) return true;
-        return false;
+        return top == 0;
     }
 
     public static void main(String[] args) {
