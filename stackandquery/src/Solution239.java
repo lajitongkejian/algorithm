@@ -13,17 +13,17 @@ public class Solution239 {
         int index = 0;
         int right = 0;
         while (right < nums.length) {
-            if(!queue.isEmpty() && nums[queue.peek()] < nums[right]){
-                queue.clear();
-                queue.add(right++);
+            while(!queue.isEmpty() && nums[queue.peekLast()] <= nums[right]){
+                queue.pollLast();
             }
-            if(queue.size() >= k){
+            queue.add(right);
+            if(queue.peek()<=right-k){
                 queue.poll();
             }
-            if(right>k-1){
-                res[index++] = nums[queue.peek()];
+            if(right>=k-1){
+                res[right+1-k] = nums[queue.peek()];
             }
-
+            right++;
         }
         return res;
     }
