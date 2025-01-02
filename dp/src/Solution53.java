@@ -7,16 +7,19 @@
  */
 public class Solution53 {
     public int maxSubArray(int[] nums) {
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
-        for(int i = 1; i < nums.length; i++) {
-            if(nums[i] + dp[i-1] > nums[i]) {
-                dp[i] = nums[i] + dp[i-1];
-            }else dp[i] = nums[i];
-        }
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < dp.length; i++) {
-            if(dp[i] > max) max = dp[i];
+        // int[] dp = new int[nums.length];
+        int prev = nums[0];
+        // dp[0] = nums[0];
+        // int max = dp[0];
+        int max = nums[0];
+        for(int i = 1;i<nums.length;i++){
+            if(prev > 0){
+                // dp[i] = nums[i] + dp[i-1];
+                prev += nums[i];
+            }else{
+                prev = nums[i];
+            }
+            max = Math.max(prev,max);
         }
         return max;
     }
