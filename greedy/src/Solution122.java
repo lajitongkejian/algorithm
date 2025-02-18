@@ -7,16 +7,12 @@
  */
 public class Solution122 {
     public int maxProfit(int[] prices) {
-        int[] curDP = new int[2];
-        int[] prevDP = new int[2];
-        prevDP[0] = -prices[0];
-        prevDP[1] = 0;
+        int res = 0;
+        int cur = prices[0];
         for(int i = 1;i<prices.length;i++){
-            curDP[0] = Math.max(prevDP[0],prevDP[1]-prices[i]);
-            curDP[1] = Math.max(prevDP[1],prevDP[0]+prices[i]);
-            prevDP[0] = curDP[0];
-            prevDP[1] = curDP[1];
+            if(cur < prices[i]) res += prices[i]-cur;
+            cur = prices[i];
         }
-        return curDP[1];
+        return res;
     }
 }
